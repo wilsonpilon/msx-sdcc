@@ -1,0 +1,14 @@
+make all --dry-run --keep-going --print-directory
+make: Entering directory '/home/barney/temp/fusion'
+sdcc  											 --code-loc 0x180  --data-loc 0x0 --disable-warning 196 -mz80 --no-std-crt0 --opt-code-size fusion.lib -L ./fusion-c/lib/ ./fusion-c/include/crt0_msxdos_advanced.rel                fusion.c
+echo "sdcc  											 is Processing ... !"
+hex2bin       							 -e com fusion.ihx
+cp fusion.com dsk/ 										
+echo "Updating files in  dsk/ 										... !"
+rm -f *.com *.asm *.lst *.sym *.bin *.ihx *.lk *.map *.noi *.rel
+echo "temp files removed!"
+# Starting emulator script 
+./openMSX/emul_start.sh
+rm fusion.ihx
+make: Leaving directory '/home/barney/temp/fusion'
+ 
